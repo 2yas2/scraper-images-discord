@@ -25,17 +25,25 @@ def recuperer_page(url=URL):
     return telecharger(url).text
 
 
+def url_miniature(src):
+    # sur la page, les images sont des miniatures (thumb.wikimedia.org) avec des parametres dans l'url
+    src = src.split("?")[0]
+    if src.startswith("//"):
+        src = "https:" + src
+    if "/wikipedia/commons/" not in src or ".svg" in src.lower():
+        return None
+    if src.lower().endswith((".jpg", ".jpeg", ".png")):
+        return src
+    return None
+
+
 def trouver_images(html):
     soupe = BeautifulSoup(html, "html.parser")
     liens = []
     for img in soupe.find_all("img"):
-        src = img.get("src", "")
-        if src.startswith("//"):
-            src = "https:" + src
-        if "upload.wikimedia.org/wikipedia/commons/" not in src:
-            continue
-        if src.lower().endswith((".jpg", ".jpeg", ".png")):
-            liens.append(src)
+        url = url_miniature(img.get("src", ""))
+        if url is not None and url not in liens:
+            liens.append(url)
     return liens
 
 
