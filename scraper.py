@@ -1,5 +1,7 @@
+import os
 import random
 import time
+from urllib.parse import unquote
 
 import requests
 from bs4 import BeautifulSoup
@@ -7,6 +9,7 @@ from bs4 import BeautifulSoup
 URL = "https://commons.wikimedia.org/wiki/Commons:Explore/Pictures"
 USER_AGENT = "ScraperImagesWikimedia/1.0 (projet etudiant; https://github.com/2yas2/scraper-images-discord)"
 DELAI = 2
+DOSSIER = "images"
 HEADERS = {"User-Agent": USER_AGENT}
 
 
@@ -43,7 +46,26 @@ def choisir_image(html):
     return random.choice(liens)
 
 
-if __name__ == "__main__":
+def enregistrer_image(url):
+    os.makedirs(DOSSIER, exist_ok=True)
+    nom = unquote(url.split("/")[-1])
+    chemin = os.path.join(DOSSIER, nom)
+    with open(chemin, "wb") as fichier:
+        fichier.write(telecharger(url).content)
+    return chemin
+
+
+def recuperer_image():
     page = recuperer_page()
-    print("page recuperee :", len(page), "caracteres")
-    print("image choisie :", choisir_image(page))
+    url = choisir_image(page)
+    if url is None:
+        print("aucune image trouvee sur la page")
+        return None
+    print("image choisie :", url)
+    chemin = enregistrer_image(url)
+    print("image enregistree :", chemin)
+    return chemin
+
+
+if __name__ == "__main__":
+    recuperer_image()
