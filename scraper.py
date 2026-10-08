@@ -55,11 +55,12 @@ def choisir_image(html):
 
 
 def enregistrer_image(url):
+    contenu = telecharger(url).content
     os.makedirs(DOSSIER, exist_ok=True)
     nom = unquote(url.split("/")[-1])
     chemin = os.path.join(DOSSIER, nom)
     with open(chemin, "wb") as fichier:
-        fichier.write(telecharger(url).content)
+        fichier.write(contenu)
     return chemin
 
 
