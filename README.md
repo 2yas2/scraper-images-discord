@@ -1,8 +1,8 @@
 # Scraper d'images avec envoi sur Discord
 
-Programme Python qui récupère une image sur la page Wikimedia Commons « Explore/Pictures » (https://commons.wikimedia.org/wiki/Commons:Explore/Pictures), l'enregistre dans le dossier `images/`, puis l'envoie sur un salon Discord.
+Programme Python qui récupère une image sur la page Wikimedia Commons « Explore/Pictures » (https://commons.wikimedia.org/wiki/Commons:Explore/Pictures), l'enregistre dans le dossier `images/` (la miniature affichée sur la page), puis l'envoie sur un salon Discord.
 
-Projet réalisé en [À COMPLÉTER : L1 ou L2], [À COMPLÉTER : année]. Le code source d'origine a été perdu, ce dépôt est une réécriture faite en 2026 à partir de la description du projet.
+Projet réalisé en [À COMPLÉTER : L1 ou L2] en [À COMPLÉTER : année].
 
 ## Technos
 
@@ -32,11 +32,11 @@ Le scraper attend 2 secondes avant chaque requête et se présente avec un User-
 
 ## Partie Discord
 
-La partie Discord (`discord_envoi.py`) a été réalisée par un coéquipier : [À COMPLÉTER : nom du coéquipier]. Elle est dans un fichier à part et n'est pas de moi. Comme le code d'origine est perdu, ce fichier a lui aussi été réécrit pour ce dépôt.
+La partie Discord (`discord_envoi.py`) a été réalisée par un coéquipier : [À COMPLÉTER : nom du coéquipier]. Elle est dans un fichier à part et n'est pas de moi.
 
 ## Captures d'écran
 
-[À COMPLÉTER]
+[À COMPLÉTER : capture de la sortie du terminal]
 
 ## Ce que j'ai fait
 
